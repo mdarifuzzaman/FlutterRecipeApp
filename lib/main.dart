@@ -5,8 +5,13 @@ import 'package:RecipeApp/services/recipeApi.dart';
 import 'package:RecipeApp/widgets/recipeCard.dart';
 import 'package:RecipeApp/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(new MaterialApp(
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(new MaterialApp(
       home: new MainPage(),
       title: "My Awesome Recipes",
       theme: ThemeData(
@@ -14,6 +19,8 @@ void main() => runApp(new MaterialApp(
           appBarTheme: AppBarTheme(color: Colors.redAccent)),
       debugShowCheckedModeBanner: false,
     ));
+  });
+}
 
 class MainPage extends StatefulWidget {
   @override
@@ -38,12 +45,13 @@ class _MainPageState extends State<MainPage> {
             MaterialPageRoute(
                 builder: (context) => Search(
                       items: value,
+                      searchTerm: _searchController.text,
                     )));
       });
     });
   }
 
-  void searchInCategory(String categoryName){
+  void searchInCategory(String categoryName) {
     setState(() {
       _loadingRecipe = true;
       RecipeApi api = new RecipeApi();
@@ -56,6 +64,7 @@ class _MainPageState extends State<MainPage> {
             MaterialPageRoute(
                 builder: (context) => Search(
                       items: value,
+                      searchTerm: categoryName,
                     )));
       });
     });

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class RecipeImage extends StatelessWidget {
@@ -18,26 +17,30 @@ class RecipeImage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Text(this.title, maxLines: 1, style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
-            ),)
+            Text(
+              this.title,
+              maxLines: 2,
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+            )
           ],
         ),
         SizedBox(
           height: 5,
         ),
-        Hero(
-          tag: title, 
-          child: Image.network(
+        Card(
+          elevation: 40,
+          child: Hero(
+            tag: title,
+            child: Image.network(
               imageUrl,
               width: width,
               height: height,
               fit: BoxFit.cover,
             ),
           ),
+        ),
         AnimatedOpacity(
           opacity: 1.0,
           duration: Duration(seconds: 1),
