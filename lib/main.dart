@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:RecipeApp/pages/search.dart';
 import 'package:RecipeApp/services/recipeApi.dart';
 import 'package:RecipeApp/widgets/recipeCard.dart';
@@ -63,7 +65,11 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My awesome recipes"),
+        title: Image.asset(
+          "assets/images/app_bar.png",
+          fit: BoxFit.cover,
+          alignment: Alignment.topLeft,
+        ),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.adjust), onPressed: null),
           IconButton(icon: Icon(Icons.arrow_downward), onPressed: null),
@@ -76,7 +82,7 @@ class _MainPageState extends State<MainPage> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: ExactAssetImage("assets/images/recipe.jpg"),
+                  image: ExactAssetImage("assets/images/recipe_image.jpg"),
                   fit: BoxFit.fitHeight)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -85,10 +91,10 @@ class _MainPageState extends State<MainPage> {
               Row(
                 children: <Widget>[
                   RecipeCard(
-                    assetPath: "assets/images/gravy.png",
-                    subTitle: "all gravies",
-                    title: "Gravy",
-                    callback: () => this.searchInCategory("gravy"),
+                    assetPath: "assets/images/western.jpg",
+                    subTitle: "Western recipes",
+                    title: "Western",
+                    callback: () => this.searchInCategory("western"),
                   ),
                   RecipeCard(
                     assetPath: "assets/images/curry.jpg",
@@ -101,10 +107,10 @@ class _MainPageState extends State<MainPage> {
               Row(
                 children: <Widget>[
                   RecipeCard(
-                    assetPath: "assets/images/fish.jpg",
-                    subTitle: "Fish recipes",
-                    title: "Fish",
-                    callback: () => this.searchInCategory("fish"),
+                    assetPath: "assets/images/fries.jpg",
+                    subTitle: "Fries recipes",
+                    title: "Fries",
+                    callback: () => this.searchInCategory("fry"),
                   ),
                   RecipeCard(
                     assetPath: "assets/images/keto.png",

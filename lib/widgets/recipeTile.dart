@@ -1,5 +1,4 @@
 import 'package:RecipeApp/widgets/alertWiggle.dart';
-import 'package:RecipeApp/widgets/recipeImage.dart';
 import 'package:flutter/material.dart';
 
 class RecipeTile extends StatelessWidget {
@@ -14,7 +13,15 @@ class RecipeTile extends StatelessWidget {
           subtitle: Text(item["recipe"]["ingredientLines"][0]),
           leading: Hero(
             tag: item["recipe"]["label"],
-            child: Image.network(item["recipe"]["image"]),
+            child: Image.network(
+              item["recipe"]["image"],
+              loadingBuilder: (BuildContext context,Widget child, ImageChunkEvent event){
+                if (event == null) return child;
+                return CircularProgressIndicator(
+                  value: event.expectedTotalBytes != null ? event.cumulativeBytesLoaded / event.expectedTotalBytes: null,
+                );
+              },
+            ),
           ), 
           contentPadding: EdgeInsets.all(2),
           isThreeLine: true,

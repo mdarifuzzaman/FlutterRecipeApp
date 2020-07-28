@@ -1,21 +1,26 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class AlertWiggle extends StatelessWidget {
+class AlertWiggle extends StatefulWidget {
   AlertWiggle({this.child});
 
   final Widget child;
   static final sinePeriod = 2 * pi;
+
+  @override
+  _AlertWiggleState createState() => _AlertWiggleState();
+}
+
+class _AlertWiggleState extends State<AlertWiggle> {
   double _endValue = 0;
 
   @override
   Widget build(BuildContext context) {
       return TweenAnimationBuilder(
-        tween: Tween<double>(begin: 0, end: _endValue),
+        tween: Tween<double>(begin: 0, end: AlertWiggle.sinePeriod),
         duration: Duration(milliseconds: 200),
-        child: child,
+        child: widget.child,
         builder: (_, double value, Widget child) {
           double offset = sin(value);
           return Transform.translate(
