@@ -13,9 +13,22 @@ class RecipeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(this.title, maxLines: 1, style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+            ),)
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
         Hero(
           tag: title, 
           child: Image.network(
