@@ -70,7 +70,7 @@ class _RecipeCardState extends State<RecipeCard>
       onTapUp: _onTapUp,
 
       child: Container(
-        width: 165,
+        width: 180,
         height: 200,
         margin: EdgeInsets.all(1),
         child: Card(
